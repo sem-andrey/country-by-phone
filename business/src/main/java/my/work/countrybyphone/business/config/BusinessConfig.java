@@ -13,5 +13,5 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 )
 @EnableJpaRepositories(basePackages = {"my.work.countrybyphone.business.persistence.repository"})
 @EntityScan("my.work.countrybyphone.business.persistence.entity")
-public class CoreConfig {
+public class BusinessConfig {
 }

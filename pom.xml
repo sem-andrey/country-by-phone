@@ -31,6 +31,7 @@
         <project.version>1.0-SNAPSHOT</project.version>
         <springdoc-openapi.version>2.2.0</springdoc-openapi.version>
         <apache-commons-lang3.version>3.13.0</apache-commons-lang3.version>
+        <h2.version>2.2.224</h2.version>
     </properties>
 
     <dependencies>
@@ -67,6 +68,13 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${apache-commons-lang3.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
