@@ -18,12 +18,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class CountryCallingCodeDescriptorResourceTest {
+class CountryCallingCodeDescriptorResourceTest {
 	@Mock
 	private CountryCallingCodeDescriptorService countryCallingCodeDescriptorService;
 
 	@Test
-	public void shouldReturnResponseWhenRequestIsValid() {
+	void shouldReturnResponseWhenRequestIsValid() {
 		//Given
 		String passedPhoneNumber = "11";
 		CountryCallingCodeDescriptorDto expectedDto = CountryCallingCodeDescriptorDto.newBuilder()
@@ -41,7 +41,7 @@ public class CountryCallingCodeDescriptorResourceTest {
 	}
 
 	@Test
-	public void shouldThrowValidationExceptionWhenPhoneNumberIsNull() {
+	void shouldThrowValidationExceptionWhenPhoneNumberIsNull() {
 		//Given
 		CountryCallingCodeDescriptorResource resource = new CountryCallingCodeDescriptorResource(countryCallingCodeDescriptorService);
 
@@ -54,7 +54,7 @@ public class CountryCallingCodeDescriptorResourceTest {
 	}
 
 	@Test
-	public void shouldThrowValidationExceptionWhenPhoneNumberIsBlank() {
+	void shouldThrowValidationExceptionWhenPhoneNumberIsBlank() {
 		//Given
 		CountryCallingCodeDescriptorResource resource = new CountryCallingCodeDescriptorResource(countryCallingCodeDescriptorService);
 
@@ -67,7 +67,7 @@ public class CountryCallingCodeDescriptorResourceTest {
 	}
 
 	@Test
-	public void shouldThrowValidationExceptionWhenPhoneNumberContainsLess2Digits() {
+	void shouldThrowValidationExceptionWhenPhoneNumberContainsLess2Digits() {
 		//Given
 		CountryCallingCodeDescriptorResource resource = new CountryCallingCodeDescriptorResource(countryCallingCodeDescriptorService);
 

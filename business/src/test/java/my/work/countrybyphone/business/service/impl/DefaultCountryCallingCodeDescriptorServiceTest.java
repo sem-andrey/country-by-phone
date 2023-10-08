@@ -18,13 +18,13 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class DefaultCountryCallingCodeDescriptorServiceTest {
+class DefaultCountryCallingCodeDescriptorServiceTest {
 
-	private static CountryCallingCodeDescriptor DESCRIPTOR_WITH_CALLING_CODE_77 = CountryCallingCodeDescriptor.makeByCodeAndCountry(
+	private static final CountryCallingCodeDescriptor DESCRIPTOR_WITH_CALLING_CODE_77 = CountryCallingCodeDescriptor.makeByCodeAndCountry(
 		"77", "Kazakhstan"
 	);
 
-	private static CountryCallingCodeDescriptor DESCRIPTOR_WITH_CALLING_CODE_7 = CountryCallingCodeDescriptor.makeByCodeAndCountry(
+	private static final CountryCallingCodeDescriptor DESCRIPTOR_WITH_CALLING_CODE_7 = CountryCallingCodeDescriptor.makeByCodeAndCountry(
 		"7", "Russia"
 	);
 
@@ -32,7 +32,7 @@ public class DefaultCountryCallingCodeDescriptorServiceTest {
 	private CountryCallingCodeDescriptorRepository countryCallingCodeDescriptorRepo;
 
 	@Test
-	public void shouldInvokeCountryCallingCodeDescriptorRepo() {
+	void shouldInvokeCountryCallingCodeDescriptorRepo() {
 		//Given
 		String phoneNumber = "771234567";
 		when(countryCallingCodeDescriptorRepo.findByPhoneNumber(phoneNumber)).thenReturn(List.of(DESCRIPTOR_WITH_CALLING_CODE_77, DESCRIPTOR_WITH_CALLING_CODE_7));
@@ -48,7 +48,7 @@ public class DefaultCountryCallingCodeDescriptorServiceTest {
 	}
 
 	@Test
-	public void shouldFilterDescriptorsHavingCodeEqualsPhoneNumber() {
+	void shouldFilterDescriptorsHavingCodeEqualsPhoneNumber() {
 		//Given
 		String phoneNumber = "77";
 		when(countryCallingCodeDescriptorRepo.findByPhoneNumber(phoneNumber)).thenReturn(List.of(DESCRIPTOR_WITH_CALLING_CODE_77, DESCRIPTOR_WITH_CALLING_CODE_7));
@@ -64,7 +64,7 @@ public class DefaultCountryCallingCodeDescriptorServiceTest {
 	}
 
 	@Test
-	public void shouldReturnEmptyOptionalWhenRepoReturnsEmptyList() {
+	void shouldReturnEmptyOptionalWhenRepoReturnsEmptyList() {
 		//Given
 		String phoneNumber = "99999";
 		when(countryCallingCodeDescriptorRepo.findByPhoneNumber(phoneNumber)).thenReturn(List.of());

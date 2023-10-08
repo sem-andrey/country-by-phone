@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 	CountryCallingCodeDescriptorService.class,
 	ExceptionHandlingAdvice.class}
 )
-public class CountryCallingCodeDescriptorResourceMvcTest {
+class CountryCallingCodeDescriptorResourceMvcTest {
 
 	private static final String RESOLVABLE_PHONE_NUMBER = "77112227231";
 
@@ -47,7 +47,7 @@ public class CountryCallingCodeDescriptorResourceMvcTest {
 	private CountryCallingCodeDescriptorService countryCallingCodeDescriptorService;
 
 	@Test
-	public void shouldReturnCountryCallingCodeDescriptor() throws Exception {
+	void shouldReturnCountryCallingCodeDescriptor() throws Exception {
 		//Given
 		when(countryCallingCodeDescriptorService.findByPhoneNumber(RESOLVABLE_PHONE_NUMBER)).thenReturn(Optional.of(RETURNED_DTO));
 		String requestedUrl = new StringBuilder(CountryCallingCodeDescriptorResource.RESOURCE_ENDPOINT)
