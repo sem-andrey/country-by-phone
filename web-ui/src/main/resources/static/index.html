@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="main.css"/>
+    <title>Searching a country by phone number</title>
+
+    <script type="module">
+        window.onload = function () {
+            const phoneInputForm = document.getElementById("phone-input-form");
+            phoneInputForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+                cleanUpSearchResult();
+
+                const url = event.currentTarget.action + "?phoneNumber=" + encodeURIComponent(event.currentTarget.phoneNumber.value);
+                const fetchOptions = {
+                    method: "GET",
+                    credentials: "same-origin",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+
+                fetch(url, fetchOptions)
+                    .then(response => {
+                        if (response.ok) {
+                            response.json()
+                                .then(json => {
+                                    showFoundCountryAndCode(json);
+                                });
+                        } else if (response.status == 400 || response.status == 404 || response.status == 500) {
+                            response.json()
+                                .then(json => {
+                                    showError(json)
+                                })
+                                .catch(error => {
+                                    handleError(error);
+                                });
+                        } else {
+                            response.text()
+                                .then(text => {
+                                    handleError(text);
+                                })
+                                .catch(error => {
+                                    handleError(error);
+                                });
+                        }
+                    })
+                    .catch(error => {
+                        handleError(error);
+                    });
+            });
+        };
+
+        function cleanUpSearchResult() {
+            document.getElementById("search-result").textContent = "";
+        }
+
+        function showFoundCountryAndCode(countryAndCode) {
+            const presentationElement = document.getElementById("search-result");
+            presentationElement.textContent = `The country: ${countryAndCode.countryName}, the calling code: ${countryAndCode.callingCode}`;
+        }
+
+        function handleError(error) {
+            console.error(`An unexpected error: ${error}`);
+            showError({error: "An unexpected error occurred"});
+        }
+
+        function showError(error) {
+            const presentationElement = document.getElementById("search-result");
+            presentationElement.textContent = `${error.error}`;
+        }
+    </script>
+</head>
+
+<body>
+<div class="page-title">
+    <span>Searching a country by phone number</span>
+</div>
+
+<div class="form-container">
+    <form id="phone-input-form" action="/api/v1/country-calling-code-descriptors" method="get">
+        <input class="text-input" type="text" name="phoneNumber" id="phone-number-input" required
+               placeholder="Input a phone number"/>
+        <button class="button" type="submit">Search</button>
+    </form>
+    <div class="search-result">
+        <span id="search-result"></span>
+    </div>
+</div>
+</body>
+</html>
