@@ -11,6 +11,7 @@ Apache Maven is used as the application build tool
 ## Running Application
 ### Command to run application from the project root directory:
     java -jar -Dspring.profiles.active=dev -Dspring.datasource.url=[database-connection-url] -Dspring.datasource.username=[database-username] -Dspring.datasource.password=[database-user-password] ./application/target/country-by-phone-app-1.0-SNAPSHOT.jar
+The following placeholders should be updated according to the environment in which the application is running: [database-connection-url], [database-username], [database-user-password]      
 Default values:  
 [database-connection-url]=jdbc:postgresql://localhost:5432/postgres  
 [database-username]=postgres  
