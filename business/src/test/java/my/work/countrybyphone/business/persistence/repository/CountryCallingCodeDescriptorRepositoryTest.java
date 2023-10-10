@@ -15,7 +15,6 @@ import static org.hamcrest.Matchers.hasSize;
 
 @SpringBootTest(classes = CountryCallingCodeDescriptorRepositoryTestConfig.class)
 @TestPropertySource(properties = {
-	"spring.autoconfigure.exclude=my.work.countrybyphone.business.config.BusinessConfig",
 	"spring.datasource.url=jdbc:h2:mem:test_db;MODE=PostgreSQL",
 	"spring.datasource.driverClassName=org.h2.Driver",
 	"spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect"
